@@ -1,41 +1,24 @@
+import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { FacebookIcon, InstagramIcon, TwitterIcon } from '../../icons/Icons'
 import styles from './Footer.module.scss'
 
-const columns = [
-  {
-    title: 'Empresa',
-    links: [
-      { label: 'Sobre nós', href: '#' },
-      { label: 'Carreiras', href: '#' },
-      { label: 'Blog', href: '#' },
-    ],
-  },
-  {
-    title: 'Contato',
-    links: [
-      { label: 'Ajuda / FAQ', href: '#' },
-      { label: 'Imprensa', href: '#' },
-      { label: 'Parcerias', href: '#' },
-    ],
-  },
-  {
-    title: 'Mais',
-    links: [
-      { label: 'Taxas de embarque', href: '#' },
-      { label: 'Companhias aéreas', href: '#' },
-      { label: 'Dicas de economia', href: '#' },
-    ],
-  },
-]
+const columnKeys = ['company', 'contact', 'more'] as const
+const columnLinkKeys: Record<(typeof columnKeys)[number], string[]> = {
+  company: ['about', 'careers', 'blog'],
+  contact: ['help', 'press', 'partnerships'],
+  more: ['fees', 'airlines', 'tips'],
+}
 
 const socialLinks = [
-  { label: 'Instagram da Jadoo', icon: InstagramIcon, href: '#' },
-  { label: 'Facebook da Jadoo', icon: FacebookIcon, href: '#' },
-  { label: 'X (Twitter) da Jadoo', icon: TwitterIcon, href: '#' },
-]
+  { key: 'instagram', icon: InstagramIcon, href: '#' },
+  { key: 'facebook', icon: FacebookIcon, href: '#' },
+  { key: 'twitter', icon: TwitterIcon, href: '#' },
+] as const
 
 export function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer className={styles.footer}>
       <Container>
@@ -44,14 +27,12 @@ export function Footer() {
             <p className={styles.logo}>
               Jadoo<span>.</span>
             </p>
-            <p className={styles.tagline}>
-              Planeje sua próxima viagem em minutos e viaje com total tranquilidade.
-            </p>
+            <p className={styles.tagline}>{t('footer.tagline')}</p>
 
             <ul className={styles.social}>
-              {socialLinks.map(({ label, icon: Icon, href }) => (
-                <li key={label}>
-                  <a href={href} aria-label={label} className={styles.socialLink}>
+              {socialLinks.map(({ key, icon: Icon, href }) => (
+                <li key={key}>
+                  <a href={href} aria-label={t(`footer.social.${key}`)} className={styles.socialLink}>
                     <Icon />
                   </a>
                 </li>
@@ -59,14 +40,14 @@ export function Footer() {
             </ul>
           </div>
 
-          <nav className={styles.columns} aria-label="Links institucionais">
-            {columns.map((column) => (
-              <div key={column.title}>
-                <h3>{column.title}</h3>
+          <nav className={styles.columns} aria-label={t('footer.columnsNavLabel')}>
+            {columnKeys.map((columnKey) => (
+              <div key={columnKey}>
+                <h3>{t(`footer.${columnKey}.title`)}</h3>
                 <ul>
-                  {column.links.map((link) => (
-                    <li key={link.label}>
-                      <a href={link.href}>{link.label}</a>
+                  {columnLinkKeys[columnKey].map((linkKey) => (
+                    <li key={linkKey}>
+                      <a href="#">{t(`footer.${columnKey}.${linkKey}`)}</a>
                     </li>
                   ))}
                 </ul>
@@ -75,16 +56,16 @@ export function Footer() {
           </nav>
 
           <div className={styles.app}>
-            <h3>Baixe nosso app</h3>
+            <h3>{t('footer.app.title')}</h3>
             <div className={styles.storeButtons}>
-              <span className={styles.storeButton}>Google Play</span>
-              <span className={styles.storeButton}>App Store</span>
+              <span className={styles.storeButton}>{t('footer.app.googlePlay')}</span>
+              <span className={styles.storeButton}>{t('footer.app.appStore')}</span>
             </div>
           </div>
         </div>
 
         <div className={styles.bottom}>
-          <p>&copy; {new Date().getFullYear()} Jadoo. Todos os direitos reservados.</p>
+          <p>{t('footer.copyright', { year: new Date().getFullYear() })}</p>
         </div>
       </Container>
     </footer>

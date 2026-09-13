@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { ChevronDownIcon, GlobeIcon } from '../../icons/Icons'
 import { languages } from '../../../data/languages'
 import styles from './LanguageSwitcher.module.scss'
 
-// Presentational only: this project ships pt-BR copy exclusively, so
-// selecting a language updates the displayed choice but does not translate
-// content — wiring a real i18n layer is out of scope for this portfolio piece.
+// Drives the real i18next language: selecting an option here calls
+// i18n.changeLanguage, which re-renders every component using useTranslation
+// and (via src/i18n/config.ts) updates <html lang> and the document title.
 export function LanguageSwitcher() {
+  const { t, i18n } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
-  const [selected, setSelected] = useState(languages[0])
   const rootRef = useRef<HTMLDivElement>(null)
+
+  const currentCode = i18n.language.slice(0, 2).toLowerCase()
+  const selected = languages.find((language) => language.code.toLowerCase() === currentCode) ?? languages[0]
 
   useEffect(() => {
     if (!isOpen) return
@@ -37,6 +41,7 @@ export function LanguageSwitcher() {
         className={styles.trigger}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
+        aria-label={t('languageSwitcher.label')}
         onClick={() => setIsOpen((open) => !open)}
       >
         <GlobeIcon />
@@ -54,7 +59,7 @@ export function LanguageSwitcher() {
                 aria-selected={language.code === selected.code}
                 className={styles.option}
                 onClick={() => {
-                  setSelected(language)
+                  void i18n.changeLanguage(language.code.toLowerCase())
                   setIsOpen(false)
                 }}
               >

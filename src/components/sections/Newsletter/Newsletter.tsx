@@ -1,4 +1,5 @@
 import { useId, useState, type FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { Button } from '../../ui/Button/Button'
 import { CheckCircleIcon, SendIcon } from '../../icons/Icons'
@@ -9,6 +10,7 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 type Status = 'idle' | 'success' | 'error'
 
 export function Newsletter() {
+  const { t } = useTranslation()
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<Status>('idle')
   const inputId = useId()
@@ -35,18 +37,18 @@ export function Newsletter() {
         </div>
 
         <h2 id="newsletter-heading" className={styles.title}>
-          Assine para receber novidades, promoções e dicas de viagem da Jadoo
+          {t('newsletter.title')}
         </h2>
 
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <label htmlFor={inputId} className={styles.visuallyHiddenLabel}>
-            Endereço de e-mail
+            {t('newsletter.emailLabel')}
           </label>
           <input
             id={inputId}
             type="email"
             required
-            placeholder="Seu e-mail"
+            placeholder={t('newsletter.placeholder')}
             value={email}
             onChange={(event) => {
               setEmail(event.target.value)
@@ -56,7 +58,7 @@ export function Newsletter() {
             aria-invalid={status === 'error'}
             aria-describedby={status !== 'idle' ? feedbackId : undefined}
           />
-          <Button type="submit">Inscrever-se</Button>
+          <Button type="submit">{t('newsletter.submit')}</Button>
         </form>
 
         <p
@@ -67,10 +69,10 @@ export function Newsletter() {
         >
           {status === 'success' && (
             <>
-              <CheckCircleIcon /> Inscrição confirmada! Fique de olho na sua caixa de entrada.
+              <CheckCircleIcon /> {t('newsletter.success')}
             </>
           )}
-          {status === 'error' && <>Digite um e-mail válido para continuar.</>}
+          {status === 'error' && <>{t('newsletter.error')}</>}
         </p>
       </Container>
     </section>

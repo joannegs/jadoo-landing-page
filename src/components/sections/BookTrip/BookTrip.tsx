@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { IconBadge } from '../../ui/IconBadge/IconBadge'
 import { IconButton } from '../../ui/IconButton/IconButton'
@@ -14,13 +15,15 @@ const icons: Record<TripStep['icon'], typeof PinIcon> = {
 }
 
 export function BookTrip() {
+  const { t } = useTranslation()
+
   return (
-    <section className={styles.bookTrip} aria-labelledby="book-trip-heading">
+    <section id="como-funciona" className={styles.bookTrip} aria-labelledby="book-trip-heading">
       <Container className={styles.grid}>
         <div className={styles.content}>
-          <p className="eyebrow">Rápido e fácil</p>
+          <p className="eyebrow">{t('bookTrip.eyebrow')}</p>
           <h2 id="book-trip-heading" className={styles.title}>
-            Reserve sua próxima viagem em 3 passos simples
+            {t('bookTrip.title')}
           </h2>
 
           <ol className={styles.steps}>
@@ -32,8 +35,8 @@ export function BookTrip() {
                     <Icon />
                   </IconBadge>
                   <div>
-                    <h3 className={styles.stepTitle}>{step.title}</h3>
-                    <p className={styles.stepText}>{step.description}</p>
+                    <h3 className={styles.stepTitle}>{t(`bookTrip.steps.${step.id}.title`)}</h3>
+                    <p className={styles.stepText}>{t(`bookTrip.steps.${step.id}.description`)}</p>
                   </div>
                 </li>
               )
@@ -47,15 +50,17 @@ export function BookTrip() {
               src={santoriniImage}
               width={900}
               height={900}
-              alt="Vielas brancas de Santorini com vista para o mar Egeu"
+              alt={t('bookTrip.trip.imageAlt')}
               loading="lazy"
               decoding="async"
               className={styles.tripImage}
             />
             <div className={styles.tripBody}>
-              <h3>Viagem para Santorini</h3>
-              <p className={styles.tripMeta}>14–29 de junho · por Equipe Jadoo</p>
-              <ul className={styles.tripIcons} aria-label="Inclui passeios sustentáveis, roteiro guiado e envio de itinerário">
+              <h3>{t('bookTrip.trip.name')}</h3>
+              <p className={styles.tripMeta}>
+                {t('bookTrip.trip.dates')} · {t('bookTrip.trip.by')}
+              </p>
+              <ul className={styles.tripIcons} aria-label={t('bookTrip.trip.iconsLabel')}>
                 <li>
                   <LeafIcon />
                 </li>
@@ -67,8 +72,8 @@ export function BookTrip() {
                 </li>
               </ul>
               <div className={styles.tripFooter}>
-                <span>24 pessoas confirmadas</span>
-                <IconButton label="Salvar viagem nos favoritos" variant="solid">
+                <span>{t('bookTrip.trip.peopleGoing')}</span>
+                <IconButton label={t('bookTrip.trip.saveLabel')} variant="solid">
                   <HeartIcon />
                 </IconButton>
               </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { Button } from '../../ui/Button/Button'
 import { IconButton } from '../../ui/IconButton/IconButton'
@@ -9,6 +10,7 @@ import { navLinks } from '../../../data/nav'
 import styles from './Header.module.scss'
 
 export function Header() {
+  const { t } = useTranslation()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   useEffect(() => {
@@ -39,11 +41,11 @@ export function Header() {
           Jadoo<span>.</span>
         </a>
 
-        <nav className={styles.desktopNav} aria-label="Navegação principal">
+        <nav className={styles.desktopNav} aria-label={t('header.navLabel')}>
           <ul>
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href}>{link.label}</a>
+                <a href={link.href}>{t(`header.nav.${link.key}`)}</a>
               </li>
             ))}
           </ul>
@@ -53,7 +55,7 @@ export function Header() {
           <LanguageSwitcher />
 
           <IconButton
-            label={isMenuOpen ? 'Fechar menu' : 'Abrir menu'}
+            label={isMenuOpen ? t('header.menu.close') : t('header.menu.open')}
             className={styles.menuToggle}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
@@ -73,19 +75,19 @@ export function Header() {
           className={`${styles.mobileNav} ${isMenuOpen ? styles.open : ''}`}
           hidden={!isMenuOpen}
         >
-          <nav aria-label="Navegação móvel">
+          <nav aria-label={t('header.mobileNavLabel')}>
             <ul>
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a href={link.href} onClick={() => setIsMenuOpen(false)}>
-                    {link.label}
+                    {t(`header.nav.${link.key}`)}
                   </a>
                 </li>
               ))}
             </ul>
           </nav>
           <Button href="#assinar" variant="primary" onClick={() => setIsMenuOpen(false)}>
-            Planejar viagem
+            {t('header.cta')}
           </Button>
         </div>,
         document.body,

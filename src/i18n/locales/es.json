@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "title": "Jadoo Viajes — Viaja, disfruta y vive una vida nueva y plena",
+    "description": "Jadoo Viajes — itinerarios personalizados, los mejores vuelos y soporte completo para tu próximo viaje."
+  },
+  "skipLink": "Saltar al contenido",
+  "header": {
+    "navLabel": "Navegación principal",
+    "mobileNavLabel": "Navegación móvil",
+    "nav": {
+      "destinations": "Destinos",
+      "services": "Servicios",
+      "howItWorks": "Cómo funciona",
+      "testimonials": "Opiniones"
+    },
+    "cta": "Planear mi viaje",
+    "menu": {
+      "open": "Abrir menú",
+      "close": "Cerrar menú"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Seleccionar idioma"
+  },
+  "hero": {
+    "eyebrow": "Las mejores rutas alrededor del mundo",
+    "title": "Viaja, disfruta y vive una vida nueva y plena",
+    "lead": "Itinerarios personalizados, soporte durante todo el viaje y los mejores precios en vuelos y hospedaje, para que solo te preocupes de disfrutar.",
+    "cta": "Encontrar mi viaje",
+    "imageAlt": "Viajera sonriente con mochila, sentada sobre su maleta, lista para una nueva aventura"
+  },
+  "services": {
+    "eyebrow": "Categoría",
+    "title": "Los mejores servicios para tu viaje",
+    "items": {
+      "weather": {
+        "title": "Clima en tiempo real",
+        "description": "Pronósticos actualizados para cada destino, para que planifiques el equipaje y los paseos sin sorpresas."
+      },
+      "flight": {
+        "title": "Los mejores vuelos",
+        "description": "Comparamos decenas de aerolíneas para encontrar la ruta más rápida al mejor precio."
+      },
+      "event": {
+        "title": "Eventos locales",
+        "description": "Recomendaciones de festivales, espectáculos y experiencias auténticas en cada ciudad de tu itinerario."
+      },
+      "customize": {
+        "title": "Personalización total",
+        "description": "Cada itinerario se ajusta a tu ritmo de viaje, presupuesto e intereses personales."
+      }
+    }
+  },
+  "destinations": {
+    "eyebrow": "Los más buscados",
+    "title": "Los destinos más deseados",
+    "days_one": "{{count}} día de viaje",
+    "days_other": "{{count}} días de viaje",
+    "items": {
+      "rome": {
+        "city": "Roma",
+        "country": "Italia",
+        "price": "5.420 €",
+        "imageAlt": "El Coliseo iluminado al atardecer, en Roma"
+      },
+      "london": {
+        "city": "Londres",
+        "country": "Reino Unido",
+        "price": "4.200 €",
+        "imageAlt": "El Big Ben y un autobús rojo de dos pisos en Londres"
+      },
+      "paris": {
+        "city": "París",
+        "country": "Francia",
+        "price": "6.900 €",
+        "imageAlt": "La Torre Eiffel al atardecer, vista desde el Sena"
+      }
+    }
+  },
+  "bookTrip": {
+    "eyebrow": "Rápido y fácil",
+    "title": "Reserva tu próximo viaje en 3 pasos simples",
+    "steps": {
+      "destination": {
+        "title": "Elige el destino",
+        "description": "Explora nuestros itinerarios seleccionados y elige el que combine con tu momento."
+      },
+      "payment": {
+        "title": "Realiza el pago",
+        "description": "Pago seguro, en cuotas, con confirmación inmediata por correo y WhatsApp."
+      },
+      "airport": {
+        "title": "Llega al aeropuerto en la fecha indicada",
+        "description": "Recibes todos los detalles del embarque con anticipación, sin apuros de última hora."
+      }
+    },
+    "trip": {
+      "name": "Viaje a Santorini",
+      "dates": "14–29 de junio",
+      "by": "por el equipo de Jadoo",
+      "iconsLabel": "Incluye paseos sostenibles, itinerario guiado y envío del itinerario",
+      "peopleGoing": "24 personas confirmadas",
+      "saveLabel": "Guardar viaje en favoritos",
+      "imageAlt": "Callejones blancos de Santorini con vista al mar Egeo"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Opiniones",
+    "title": "Lo que dicen nuestros viajeros",
+    "roleDescription": "opinión",
+    "position": "{{current}} de {{total}}",
+    "prev": "Opinión anterior",
+    "next": "Siguiente opinión",
+    "goTo": "Ver opinión de {{name}}",
+    "items": {
+      "rafael": {
+        "name": "Rafael Nogueira",
+        "role": "Viajó a Roma, Italia",
+        "quote": "Reservé mi viaje a Roma en menos de diez minutos y el soporte durante todo el viaje fue impecable. Lo recomiendo sin dudarlo."
+      },
+      "marina": {
+        "name": "Marina Duarte",
+        "role": "Viajó a Santorini, Grecia",
+        "quote": "El equipo armó un itinerario a medida para nuestra luna de miel en Santorini. Cada detalle estuvo pensado, sin ningún dolor de cabeza."
+      },
+      "eduardo": {
+        "name": "Eduardo Lima",
+        "role": "Viajó a Londres, Reino Unido",
+        "quote": "Ya viajé con varias agencias y Jadoo fue la primera que realmente entendió lo que yo quería del viaje, no solo el destino."
+      }
+    }
+  },
+  "partners": {
+    "sectionLabel": "Marcas asociadas",
+    "label": "Empresas que confían en Jadoo"
+  },
+  "newsletter": {
+    "title": "Suscríbete para recibir novedades, promociones y consejos de viaje de Jadoo",
+    "emailLabel": "Correo electrónico",
+    "placeholder": "Tu correo electrónico",
+    "submit": "Suscribirme",
+    "success": "¡Suscripción confirmada! Atento a tu bandeja de entrada.",
+    "error": "Ingresa un correo electrónico válido para continuar."
+  },
+  "footer": {
+    "tagline": "Planea tu próximo viaje en minutos y viaja con total tranquilidad.",
+    "columnsNavLabel": "Enlaces institucionales",
+    "company": {
+      "title": "Empresa",
+      "about": "Sobre nosotros",
+      "careers": "Empleo",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Contacto",
+      "help": "Ayuda / FAQ",
+      "press": "Prensa",
+      "partnerships": "Alianzas"
+    },
+    "more": {
+      "title": "Más",
+      "fees": "Tarifas de equipaje",
+      "airlines": "Aerolíneas",
+      "tips": "Consejos de ahorro"
+    },
+    "app": {
+      "title": "Descarga nuestra app",
+      "googlePlay": "Google Play",
+      "appStore": "App Store"
+    },
+    "social": {
+      "instagram": "Jadoo en Instagram",
+      "facebook": "Jadoo en Facebook",
+      "twitter": "Jadoo en X (Twitter)"
+    },
+    "copyright": "© {{year}} Jadoo. Todos los derechos reservados."
+  }
+}

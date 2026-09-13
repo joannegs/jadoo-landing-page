@@ -1,37 +1,25 @@
 export interface NavLink {
-  label: string
+  key: 'destinations' | 'services' | 'howItWorks' | 'testimonials'
   href: string
 }
 
 export interface ServiceItem {
-  id: string
-  title: string
-  description: string
-  icon: 'weather' | 'flight' | 'event' | 'customize'
+  id: 'weather' | 'flight' | 'event' | 'customize'
 }
 
 export interface Destination {
-  id: string
-  city: string
-  country: string
-  price: string
+  id: 'rome' | 'london' | 'paris'
   days: number
   image: string
-  imageAlt: string
 }
 
 export interface TripStep {
-  id: string
-  title: string
-  description: string
+  id: 'destination' | 'payment' | 'airport'
   icon: 'pin' | 'payment' | 'airport'
 }
 
 export interface Testimonial {
-  id: string
-  quote: string
-  name: string
-  role: string
+  id: 'rafael' | 'marina' | 'eduardo'
   avatar: string
 }
 

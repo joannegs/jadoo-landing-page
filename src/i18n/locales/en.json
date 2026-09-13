@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "title": "Jadoo Travel — Travel, enjoy, and live a new, full life",
+    "description": "Jadoo Travel — personalized itineraries, the best flights, and full support for your next trip."
+  },
+  "skipLink": "Skip to content",
+  "header": {
+    "navLabel": "Main navigation",
+    "mobileNavLabel": "Mobile navigation",
+    "nav": {
+      "destinations": "Destinations",
+      "services": "Services",
+      "howItWorks": "How it works",
+      "testimonials": "Testimonials"
+    },
+    "cta": "Plan my trip",
+    "menu": {
+      "open": "Open menu",
+      "close": "Close menu"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Select language"
+  },
+  "hero": {
+    "eyebrow": "The best routes around the world",
+    "title": "Travel, enjoy, and live a new, full life",
+    "lead": "Personalized itineraries, support throughout your trip, and the best prices on flights and stays — so you can just focus on enjoying it.",
+    "cta": "Find my trip",
+    "imageAlt": "Smiling traveler with a backpack, sitting on her suitcase, ready for a new adventure"
+  },
+  "services": {
+    "eyebrow": "Category",
+    "title": "The best services for your trip",
+    "items": {
+      "weather": {
+        "title": "Real-time weather",
+        "description": "Up-to-date forecasts for every destination, so you can pack and plan activities without surprises."
+      },
+      "flight": {
+        "title": "Best flights",
+        "description": "We compare dozens of airlines to find the fastest route at the best price."
+      },
+      "event": {
+        "title": "Local events",
+        "description": "Recommendations for festivals, shows, and authentic experiences in every city on your itinerary."
+      },
+      "customize": {
+        "title": "Full customization",
+        "description": "Every itinerary is tailored to your pace, budget, and personal interests."
+      }
+    }
+  },
+  "destinations": {
+    "eyebrow": "Most sought-after",
+    "title": "The most wanted destinations",
+    "days_one": "{{count}}-day trip",
+    "days_other": "{{count}}-day trip",
+    "items": {
+      "rome": {
+        "city": "Rome",
+        "country": "Italy",
+        "price": "$5,420",
+        "imageAlt": "The Colosseum lit up at dusk, in Rome"
+      },
+      "london": {
+        "city": "London",
+        "country": "United Kingdom",
+        "price": "$4,200",
+        "imageAlt": "Big Ben and a red double-decker bus in London"
+      },
+      "paris": {
+        "city": "Paris",
+        "country": "France",
+        "price": "$6,900",
+        "imageAlt": "The Eiffel Tower at dusk, seen from the Seine"
+      }
+    }
+  },
+  "bookTrip": {
+    "eyebrow": "Quick and easy",
+    "title": "Book your next trip in 3 simple steps",
+    "steps": {
+      "destination": {
+        "title": "Choose your destination",
+        "description": "Browse our curated itineraries and pick the one that fits your moment."
+      },
+      "payment": {
+        "title": "Make your payment",
+        "description": "Secure, installment-friendly payment, with instant confirmation by email and WhatsApp."
+      },
+      "airport": {
+        "title": "Get to the airport on the scheduled date",
+        "description": "You'll receive every boarding detail in advance — no last-minute rush."
+      }
+    },
+    "trip": {
+      "name": "Trip to Santorini",
+      "dates": "June 14–29",
+      "by": "by the Jadoo Team",
+      "iconsLabel": "Includes sustainable tours, a guided itinerary, and itinerary delivery",
+      "peopleGoing": "24 people confirmed",
+      "saveLabel": "Save trip to favorites",
+      "imageAlt": "White alleyways in Santorini overlooking the Aegean Sea"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What our travelers say",
+    "roleDescription": "testimonial",
+    "position": "{{current}} of {{total}}",
+    "prev": "Previous testimonial",
+    "next": "Next testimonial",
+    "goTo": "View testimonial from {{name}}",
+    "items": {
+      "rafael": {
+        "name": "Rafael Nogueira",
+        "role": "Traveled to Rome, Italy",
+        "quote": "I booked my trip to Rome in under ten minutes, and the support throughout the trip was flawless. I'd recommend it with my eyes closed."
+      },
+      "marina": {
+        "name": "Marina Duarte",
+        "role": "Traveled to Santorini, Greece",
+        "quote": "The team put together a tailor-made itinerary for our honeymoon in Santorini. Every detail was thought through, without a single headache."
+      },
+      "eduardo": {
+        "name": "Eduardo Lima",
+        "role": "Traveled to London, United Kingdom",
+        "quote": "I've traveled with several agencies before, and Jadoo was the first one that truly understood what I wanted from the trip, not just the destination."
+      }
+    }
+  },
+  "partners": {
+    "sectionLabel": "Partner brands",
+    "label": "Companies that trust Jadoo"
+  },
+  "newsletter": {
+    "title": "Subscribe to get news, promotions, and travel tips from Jadoo",
+    "emailLabel": "Email address",
+    "placeholder": "Your email",
+    "submit": "Subscribe",
+    "success": "Subscription confirmed! Keep an eye on your inbox.",
+    "error": "Enter a valid email to continue."
+  },
+  "footer": {
+    "tagline": "Plan your next trip in minutes and travel with total peace of mind.",
+    "columnsNavLabel": "Company links",
+    "company": {
+      "title": "Company",
+      "about": "About us",
+      "careers": "Careers",
+      "blog": "Blog"
+    },
+    "contact": {
+      "title": "Contact",
+      "help": "Help / FAQ",
+      "press": "Press",
+      "partnerships": "Partnerships"
+    },
+    "more": {
+      "title": "More",
+      "fees": "Baggage fees",
+      "airlines": "Airlines",
+      "tips": "Money-saving tips"
+    },
+    "app": {
+      "title": "Get our app",
+      "googlePlay": "Google Play",
+      "appStore": "App Store"
+    },
+    "social": {
+      "instagram": "Jadoo on Instagram",
+      "facebook": "Jadoo on Facebook",
+      "twitter": "Jadoo on X (Twitter)"
+    },
+    "copyright": "© {{year}} Jadoo. All rights reserved."
+  }
+}
