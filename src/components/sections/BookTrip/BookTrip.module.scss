@@ -1,0 +1,186 @@
+@use '../../../styles/mixins' as m;
+
+.bookTrip {
+  padding-block: 64px;
+
+  @include m.respond(lg) {
+    padding-block: 96px;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: 56px;
+  align-items: center;
+
+  @include m.respond(lg) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+.title {
+  margin-top: 12px;
+  font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
+  line-height: 1.15;
+  max-width: 16ch;
+}
+
+.steps {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.step {
+  display: flex;
+  gap: 20px;
+}
+
+.stepTitle {
+  font-size: 1.125rem;
+}
+
+.stepText {
+  margin-top: 8px;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 42ch;
+}
+
+.visual {
+  position: relative;
+  padding-block: 24px;
+
+  @include m.respond(lg) {
+    padding-block: 0;
+    padding-inline-end: 40px;
+  }
+}
+
+.tripCard {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  max-width: 360px;
+  margin-inline: auto;
+
+  @include m.respond(lg) {
+    margin-inline: 0;
+  }
+}
+
+.tripImage {
+  width: 100%;
+  // Reset the height the width/height HTML attributes imply, otherwise it
+  // overrides aspect-ratio and the image renders at its raw intrinsic size.
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.tripBody {
+  padding: 24px;
+
+  h3 {
+    font-size: 1.125rem;
+  }
+}
+
+.tripMeta {
+  margin-top: 4px;
+  font-size: 0.875rem;
+}
+
+.tripIcons {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    background-color: var(--color-surface-muted);
+    color: var(--color-navy-700);
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.tripFooter {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-ink);
+
+  svg {
+    color: var(--color-accent);
+  }
+}
+
+.progressCard {
+  position: relative;
+  margin-top: -40px;
+  margin-inline: 24px;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 20px 24px;
+  max-width: 300px;
+
+  h4 {
+    margin-top: 6px;
+    font-size: 1rem;
+  }
+
+  @include m.respond(lg) {
+    position: absolute;
+    inset-inline-start: -20px;
+    inset-block-end: 24px;
+    margin: 0;
+  }
+}
+
+.progressBadge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-primary-dark);
+  background-color: var(--color-peach);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.progressTrack {
+  margin-top: 14px;
+  height: 6px;
+  border-radius: 999px;
+  background-color: var(--color-border);
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 999px;
+  background-color: var(--color-accent);
+}
+
+.progressLabel {
+  margin-top: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-ink);
+}

@@ -1,0 +1,29 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  flex-shrink: 0;
+
+  svg {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+.primary {
+  background-color: var(--color-peach);
+  color: var(--color-primary-dark);
+}
+
+.accent {
+  background-color: #fde3de;
+  color: var(--color-accent);
+}
+
+.navy {
+  background-color: var(--color-lavender);
+  color: var(--color-navy-700);
+}

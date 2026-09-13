@@ -1,0 +1,55 @@
+@use 'tokens' as t;
+
+// Mobile-first breakpoint helper: @include respond(md) { ... }
+@mixin respond($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: t.$bp-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: t.$bp-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: t.$bp-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: t.$bp-xl) { @content; }
+  } @else {
+    @media (min-width: $breakpoint) { @content; }
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: t.$container-max;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @include respond(md) {
+    padding-inline: 32px;
+  }
+}
+
+// Visible only to assistive tech until focused (skip link pattern).
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Consistent keyboard focus ring; relies on :focus-visible so mouse users
+// don't see it on click.
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

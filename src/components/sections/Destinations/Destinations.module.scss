@@ -1,0 +1,88 @@
+@use '../../../styles/mixins' as m;
+
+.destinations {
+  padding-block: 64px;
+  background-color: var(--color-surface-muted);
+
+  @include m.respond(lg) {
+    padding-block: 96px;
+  }
+}
+
+.grid {
+  margin-top: 48px;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 1fr;
+
+  @include m.respond(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.respond(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--duration-base) var(--ease-standard),
+    transform var(--duration-base) var(--ease-standard);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+  }
+}
+
+.image {
+  width: 100%;
+  // The width/height HTML attributes (set for CLS prevention) become a
+  // definite CSS height that overrides aspect-ratio unless we reset it here.
+  height: auto;
+  aspect-ratio: 9 / 10;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 20px 4px;
+}
+
+.city {
+  font-size: 1.1875rem;
+}
+
+.country {
+  margin-top: 2px;
+  font-size: 0.875rem;
+}
+
+.price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1875rem;
+  color: var(--color-ink);
+  white-space: nowrap;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px 20px;
+  font-size: 0.875rem;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    color: var(--color-primary);
+  }
+}

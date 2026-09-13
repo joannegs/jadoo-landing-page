@@ -1,0 +1,74 @@
+@use '../../../styles/mixins' as m;
+
+.switcher {
+  position: relative;
+}
+
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding-inline: 12px;
+  border-radius: 999px;
+  color: var(--color-ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: background-color var(--duration-fast) var(--ease-standard);
+
+  @include m.focus-ring;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  &:hover {
+    background-color: var(--color-surface-muted);
+  }
+}
+
+.chevron {
+  transition: transform var(--duration-fast) var(--ease-standard);
+
+  .trigger[aria-expanded='true'] & {
+    transform: rotate(180deg);
+  }
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 160px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  padding: 6px;
+  z-index: 10;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 0.9375rem;
+  color: var(--color-body);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+
+  @include m.focus-ring;
+
+  &:hover {
+    background-color: var(--color-surface-muted);
+    color: var(--color-ink);
+  }
+
+  &[aria-selected='true'] {
+    color: var(--color-ink);
+    font-weight: 600;
+    background-color: var(--color-peach-soft);
+  }
+}

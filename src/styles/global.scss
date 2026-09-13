@@ -1,0 +1,47 @@
+@use 'tokens';
+@use 'reset';
+@use 'mixins' as m;
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-body);
+  background-color: var(--color-surface);
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+}
+
+.skip-link {
+  @include m.visually-hidden;
+
+  &:focus {
+    position: fixed;
+    inset-block-start: 12px;
+    inset-inline-start: 12px;
+    width: auto;
+    height: auto;
+    clip: auto;
+    z-index: 1000;
+    background: var(--color-ink);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+  }
+}
+
+// Utility to keep section headings/eyebrows/etc. consistent without
+// re-declaring the same rules in every module.
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

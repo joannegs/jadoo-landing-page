@@ -1,0 +1,103 @@
+@use '../../../styles/mixins' as m;
+
+.testimonials {
+  padding-block: 64px;
+
+  @include m.respond(lg) {
+    padding-block: 96px;
+  }
+}
+
+.layout {
+  display: grid;
+  gap: 40px;
+
+  @include m.respond(lg) {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+
+  @include m.respond(sm) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.quote {
+  p {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-ink);
+  }
+
+  footer {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.name {
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.role {
+  margin-top: 2px;
+  font-size: 0.875rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dots {
+  display: flex;
+  gap: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background-color: var(--color-border);
+  transition: background-color var(--duration-fast) var(--ease-standard);
+
+  @include m.focus-ring;
+
+  &[aria-current='true'] {
+    background-color: var(--color-primary);
+    width: 28px;
+  }
+}
+
+.arrows {
+  display: flex;
+  gap: 8px;
+}

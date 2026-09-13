@@ -1,0 +1,38 @@
+@use '../../../styles/mixins' as m;
+
+.section {
+  padding-block: 48px;
+}
+
+.label {
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-body-soft);
+}
+
+.list {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px 48px;
+
+  @include m.respond(md) {
+    gap: 40px 64px;
+  }
+}
+
+.item {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-body-soft);
+  opacity: 0.8;
+  transition: opacity var(--duration-fast) var(--ease-standard);
+
+  &:hover {
+    opacity: 1;
+    color: var(--color-ink);
+  }
+}

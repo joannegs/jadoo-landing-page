@@ -1,0 +1,64 @@
+@use '../../../styles/mixins' as m;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+
+  @include m.focus-ring;
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.icon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+}
+
+.primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+
+  &:hover {
+    background-color: var(--color-primary-dark);
+  }
+}
+
+.secondary {
+  background-color: var(--color-ink);
+  color: white;
+
+  &:hover {
+    background-color: var(--color-navy-700);
+  }
+}
+
+.ghost {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-ink);
+
+  &:hover {
+    border-color: var(--color-ink);
+  }
+}
