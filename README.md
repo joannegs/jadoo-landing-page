@@ -1,32 +1,167 @@
-# React + TypeScript + Vite
+# Jadoo Viagens — Travel Agency Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A landing page for a fictitious travel agency (**Jadoo**).
 
-Currently, two official plugins are available:
+## 🛠️ Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Category            | Technology |
+| -------------------- | ---------- |
+| Framework            | [React 19](https://react.dev/) |
+| Build tool            | [Vite 8](https://vite.dev/) |
+| Language              | [TypeScript](https://www.typescriptlang.org/) |
+| Styling               | [Sass](https://sass-lang.com/) (CSS Modules per component) |
+| Internationalization  | [i18next](https://www.i18next.com/) + [react-i18next](https://react.i18next.com/) + [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) |
+| Typography            | Self-hosted variable fonts via [Fontsource](https://fontsource.org/) (`Fraunces` for headings, `Inter` for body text) |
+| Lint                  | [oxlint](https://oxc.rs/) |
 
-## React Compiler
+No CSS framework (Tailwind, Bootstrap, etc.) is used — the whole design
+system is implemented by hand with Sass tokens.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📁 Project structure
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+├── assets/images/         # Optimized (.webp) images used across sections
+├── components/
+│   ├── ui/                # Generic, reusable components
+│   │   (Button, Container, IconBadge, IconButton,
+│   │    LanguageSwitcher, SectionHeading)
+│   ├── layout/             # Header and Footer
+│   ├── sections/           # One folder per landing page section
+│   │   (Hero, Services, Destinations, BookTrip,
+│   │    Testimonials, PartnerLogos, Newsletter)
+│   └── icons/              # SVG icons as React components
+├── data/                   # Typed content arrays/objects
+│                            # (destinations, services, testimonials, nav...)
+├── i18n/
+│   ├── config.ts           # i18next configuration
+│   └── locales/            # Translation files (pt.json, en.json, es.json)
+├── styles/
+│   ├── _tokens.scss        # Design tokens (colors, spacing, breakpoints)
+│   ├── _mixins.scss        # Sass mixins (respond, container, focus-ring...)
+│   ├── _reset.scss         # CSS reset
+│   └── global.scss         # Global styles
+├── App.tsx                 # Composes the page sections
+├── main.tsx                # Entry point (mounts React, imports fonts/i18n)
+└── types.ts                 # Shared types
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Each component ships with its own `Component.module.scss` file — CSS
+Modules, no styling framework.
+
+## 🌍 Internationalization (i18n)
+
+The project supports **3 languages**: **Portuguese (pt)**, **English (en)**
+and **Spanish (es)**, with **Portuguese as the default/fallback language**
+(the primary target audience is Brazilian).
+
+### How it works
+
+1. **Library**: internationalization is handled with `i18next` +
+   `react-i18next`. All configuration lives in
+   [`src/i18n/config.ts`](src/i18n/config.ts), which is imported once in
+   [`src/main.tsx`](src/main.tsx), before `<App />` is rendered.
+
+2. **Translation files**: each language has its own JSON file in
+   `src/i18n/locales/` (`pt.json`, `en.json`, `es.json`), sharing the same
+   keys nested by section (`hero.title`, `services.eyebrow`,
+   `footer.rights`, etc.). All three are loaded as i18next resources at
+   startup — there's no async/lazy language loading.
+
+3. **Usage in components**: every component that renders text uses the
+   `useTranslation()` hook from `react-i18next` and looks up strings by
+   key, e.g.:
+
+   ```tsx
+   const { t } = useTranslation()
+   <h1>{t('hero.title')}</h1>
+   ```
+
+   There's no hardcoded Portuguese text in components — every user-facing
+   string comes from the translation dictionaries (code identifiers,
+   comments, and commit messages stay in English, per usual convention).
+
+4. **Automatic language detection**: the
+   `i18next-browser-languagedetector` plugin detects the user's preferred
+   language on first visit, in this priority order:
+   - a language previously saved in `localStorage` (key `jadoo-language`);
+   - the browser's language (`navigator.language`);
+   - `pt` as the final fallback, if nothing else matches a supported
+     language.
+
+5. **Manual language switching**: the
+   [`LanguageSwitcher`](src/components/ui/LanguageSwitcher/LanguageSwitcher.tsx)
+   component, in the Header, shows a menu with the PT/EN/ES options
+   (defined in [`src/data/languages.ts`](src/data/languages.ts)). Selecting
+   a language calls `i18n.changeLanguage(...)`, which:
+   - automatically re-renders every component using `useTranslation()`
+     with the new language;
+   - persists the choice to `localStorage`, so the selected language is
+     remembered on future visits.
+
+6. **Document sync**: a listener on i18next's `languageChanged` event (in
+   `src/i18n/config.ts`) keeps `<html lang="...">` and the page
+   `<title>`/`<meta name="description">` in sync with the active
+   language — important for both SEO and assistive technology (screen
+   readers).
+
+7. **Interpolation**: the `escapeValue: false` option is used because React
+   already escapes values by default, avoiding double-sanitization when
+   interpolating variables into translation strings.
+
+### Adding a new translatable string
+
+1. Add the key and the Portuguese text to `src/i18n/locales/pt.json`.
+2. Mirror the same key (translated) in `en.json` and `es.json`.
+3. Use `t('your.key')` in the component.
+
+### Adding a new language
+
+1. Create `src/i18n/locales/<code>.json` with all existing keys translated.
+2. Register the new language in `resources` and `supportedLanguages` in
+   [`src/i18n/config.ts`](src/i18n/config.ts).
+3. Add the matching entry to
+   [`src/data/languages.ts`](src/data/languages.ts) so it shows up in the
+   `LanguageSwitcher`.
+
+## 🖼️ Images
+
+Destination photos, testimonial avatars, and the hero image were downloaded
+locally (not hotlinked) and optimized as `.webp` where possible, living in
+`src/assets/images/`.
+
+## 🚀 Running locally
+
+Prerequisite: [Node.js](https://nodejs.org/) installed.
+
+```bash
+# install dependencies
+npm install
+
+# start the dev server (with HMR)
+npm run dev
+
+# production build (type-check + build)
+npm run build
+
+# preview the production build
+npm run preview
+
+# run the linter (oxlint)
+npm run lint
+```
+
+By default, `npm run dev` serves the app at `http://localhost:5173`.
+
+## ♿ Accessibility and responsiveness
+
+- **Mobile-first** layout, with breakpoints defined in
+  `src/styles/_tokens.scss` and applied via the `respond()` mixin.
+- Skip link to the main content, `aria-label`s on buttons/icons, focus
+  management in the mobile menu and the language switcher.
+- Respects `prefers-reduced-motion` for motion-sensitive users.
+
+## 📄 License
+
+Personal portfolio project, non-commercial. Partner brand names (Skyloom,
+Voyx, Aurora Air, Trippo, Meridian) are fictitious.
