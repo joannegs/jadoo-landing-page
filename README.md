@@ -15,23 +15,22 @@ A landing page for a fictitious travel agency (**Jadoo**).
 | Animations             | [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) (scroll detection, via a custom `useInView` hook) + native CSS `@keyframes`/`animation` (no animation library) |
 | Lint                  | [oxlint](https://oxc.rs/) |
 
-No CSS framework (Tailwind, Bootstrap, etc.) is used — the whole design
-system is implemented by hand with Sass tokens.
+No CSS framework (Tailwind, Bootstrap, etc.) is used. 
 
 ## 📁 Project structure
 
 ```
 src/
-├── assets/images/         # Optimized (.webp) images used across sections
+├── assets/images/         
 ├── components/
-│   ├── ui/                # Generic, reusable components
+│   ├── ui/                
 │   │   (Button, Container, IconBadge, IconButton,
 │   │    LanguageSwitcher, SectionHeading)
-│   ├── layout/             # Header and Footer
-│   ├── sections/           # One folder per landing page section
+│   ├── layout/             
+│   ├── sections/           
 │   │   (Hero, Services, Destinations, BookTrip,
 │   │    Testimonials, PartnerLogos, Newsletter)
-│   └── icons/              # SVG icons as React components
+│   └── icons/              
 ├── data/                   # Typed content arrays/objects
 │                            # (destinations, services, testimonials, nav...)
 ├── hooks/
@@ -40,13 +39,13 @@ src/
 │   ├── config.ts           # i18next configuration
 │   └── locales/            # Translation files (pt.json, en.json, es.json)
 ├── styles/
-│   ├── _tokens.scss        # Design tokens (colors, spacing, breakpoints)
-│   ├── _mixins.scss        # Sass mixins (respond, container, focus-ring...)
-│   ├── _reset.scss         # CSS reset
-│   └── global.scss         # Global styles
+│   ├── _tokens.scss        
+│   ├── _mixins.scss       
+│   ├── _reset.scss         
+│   └── global.scss         
 ├── App.tsx                 # Composes the page sections
 ├── main.tsx                # Entry point (mounts React, imports fonts/i18n)
-└── types.ts                 # Shared types
+└── types.ts                # Shared types
 ```
 
 Each component ships with its own `Component.module.scss` file — CSS
@@ -55,34 +54,29 @@ Modules, no styling framework.
 ## 🌍 Internationalization (i18n)
 
 The project supports **3 languages**: **Portuguese (pt)**, **English (en)**
-and **Spanish (es)**, with **Portuguese as the default/fallback language**
-(the primary target audience is Brazilian).
+and **Spanish (es)**, with **Portuguese as the default/fallback language**.
 
 ### How it works
 
 1. **Library**: internationalization is handled with `i18next` +
-   `react-i18next`. All configuration lives in
-   [`src/i18n/config.ts`](src/i18n/config.ts), which is imported once in
-   [`src/main.tsx`](src/main.tsx), before `<App />` is rendered.
+   `react-i18next`. All configuration are in
+   [`src/i18n/config.ts`](src/i18n/config.ts), which is imported in
+   [`src/main.tsx`](src/main.tsx), before `<App />` is rendered to ensure that when it is rendered, languages import is already loaded.
 
 2. **Translation files**: each language has its own JSON file in
    `src/i18n/locales/` (`pt.json`, `en.json`, `es.json`), sharing the same
    keys nested by section (`hero.title`, `services.eyebrow`,
    `footer.rights`, etc.). All three are loaded as i18next resources at
-   startup — there's no async/lazy language loading.
+   startup.
 
 3. **Usage in components**: every component that renders text uses the
    `useTranslation()` hook from `react-i18next` and looks up strings by
-   key, e.g.:
+   key:
 
    ```tsx
    const { t } = useTranslation()
    <h1>{t('hero.title')}</h1>
    ```
-
-   There's no hardcoded Portuguese text in components — every user-facing
-   string comes from the translation dictionaries (code identifiers,
-   comments, and commit messages stay in English, per usual convention).
 
 4. **Automatic language detection**: the
    `i18next-browser-languagedetector` plugin detects the user's preferred
@@ -99,24 +93,22 @@ and **Spanish (es)**, with **Portuguese as the default/fallback language**
    a language calls `i18n.changeLanguage(...)`, which:
    - automatically re-renders every component using `useTranslation()`
      with the new language;
-   - persists the choice to `localStorage`, so the selected language is
-     remembered on future visits.
+   - persists the choice to `localStorage`.
 
 6. **Document sync**: a listener on i18next's `languageChanged` event (in
    `src/i18n/config.ts`) keeps `<html lang="...">` and the page
    `<title>`/`<meta name="description">` in sync with the active
-   language — important for both SEO and assistive technology (screen
-   readers).
+   language. That's for both SEO and assistive technology as screen
+   readers.
 
 7. **Interpolation**: the `escapeValue: false` option is used because React
-   already escapes values by default, avoiding double-sanitization when
-   interpolating variables into translation strings.
+   already escapes values by default.
 
 ### Adding a new translatable string
 
 1. Add the key and the Portuguese text to `src/i18n/locales/pt.json`.
 2. Mirror the same key (translated) in `en.json` and `es.json`.
-3. Use `t('your.key')` in the component.
+3. Use `t('new.key')` in the component.
 
 ### Adding a new language
 
@@ -135,47 +127,18 @@ locally (not hotlinked) and optimized as `.webp` where possible, living in
 
 ## 🎬 Animations
 
-No animation library (Framer Motion, GSAP, AOS, etc.) is used — scroll
-reveals and ambient motion are built with the Intersection Observer API and
+No animation library (Framer Motion, GSAP, AOS, etc.) is used. Scroll
+reveals and ambient motion are built purely with the Intersection Observer API and
 plain CSS.
 
-1. **Scroll detection**: [`src/hooks/useInView.ts`](src/hooks/useInView.ts)
-   wraps `IntersectionObserver` in a hook that returns a `ref` and an
-   `isInView` boolean, toggling both ways as an element enters/leaves the
-   viewport (not just once), so section animations replay every time you
-   scroll back to them.
+1. Scroll detection
 
-2. **Reveal-on-scroll**: each section attaches `useInView` to its root and
-   toggles an `.inView` modifier class. `src/styles/_mixins.scss` provides
-   `reveal-hidden($direction, $distance)` (the resting/hidden state) and
-   `reveal-visible($delay)` (the `@keyframes` entrance, triggered under
-   `.inView`), with `up`, `down`, `left`, `right` and `pop` (scale-in)
-   variants driven by a shared `--reveal-from` CSS custom property.
+2. Reveal-on-scroll
 
-3. **Staggering**: the `stagger($count, $selector, $step)` mixin assigns
-   incremental `animation-delay`s via `:nth-child`, so grids/lists (service
-   cards, destination cards, trip steps, partner logos) cascade in item by
-   item instead of appearing all at once.
+3. Staggering
 
-4. **Ambient motion**: a few elements animate continuously regardless of
-   scroll state — the hero illustration and its background blob gently
-   float (`float($distance, $duration)` mixin), the newsletter's send icon
-   drifts and tilts like a paper plane, and the partner logos scroll in an
-   infinite marquee (duplicated list translated via `@keyframes`, paused on
-   hover).
+4. Ambient motion
 
-5. **CSS Modules caveat**: `@keyframes` names are scoped per file by CSS
-   Modules, so a shared keyframe declared once in a global stylesheet gets
-   hashed differently in every component that references it and never
-   matches. `reveal-keyframes` / `float-keyframes` mixins are `@include`d
-   once per `.module.scss` file that needs them, keeping the definition and
-   its usage in the same file.
-
-6. **Reduced motion**: `_reset.scss` shortens `animation-duration` globally
-   for `prefers-reduced-motion: reduce`, which is enough for one-shot
-   reveals but would turn an `infinite` loop into a rapid flicker instead of
-   stopping it — the `reduce-motion()` mixin explicitly sets
-   `animation: none` on ambient/infinite animations for those users.
 
 ## 🚀 Running locally
 
@@ -185,10 +148,10 @@ Prerequisite: [Node.js](https://nodejs.org/) installed.
 # install dependencies
 npm install
 
-# start the dev server (with HMR)
+# start the dev server
 npm run dev
 
-# production build (type-check + build)
+# production build
 npm run build
 
 # preview the production build
@@ -206,13 +169,5 @@ By default, `npm run dev` serves the app at `http://localhost:5173`.
   `src/styles/_tokens.scss` and applied via the `respond()` mixin.
 - Skip link to the main content, `aria-label`s on buttons/icons, focus
   management in the mobile menu and the language switcher.
-- Respects `prefers-reduced-motion` for motion-sensitive users — one-shot
-  reveal animations snap to their end state and ambient/infinite loops (see
-  [Animations](#-animations)) are turned off outright.
-- The partner logos marquee duplicates its list to loop seamlessly; the
-  duplicate is `aria-hidden` so screen readers don't announce it twice.
+- Respects `prefers-reduced-motion` for motion-sensitive users.
 
-## 📄 License
-
-Personal portfolio project, non-commercial. Partner brand names (Skyloom,
-Voyx, Aurora Air, Trippo, Meridian) are fictitious.
