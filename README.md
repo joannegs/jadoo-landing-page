@@ -2,6 +2,8 @@
 
 A landing page for a fictitious travel agency (**Jadoo**).
 
+🔗 **Live demo:** [jadoo-landing-page-navy.vercel.app](https://jadoo-landing-page-navy.vercel.app/)
+
 ![Jadoo landing page preview](public/jadoo-landing.gif)
 
 ## 🛠️ Tech stack
