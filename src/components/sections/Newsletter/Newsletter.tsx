@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { Button } from '../../ui/Button/Button'
 import { CheckCircleIcon, SendIcon } from '../../icons/Icons'
+import { useInView } from '../../../hooks/useInView'
 import styles from './Newsletter.module.scss'
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -15,6 +16,7 @@ export function Newsletter() {
   const [status, setStatus] = useState<Status>('idle')
   const inputId = useId()
   const feedbackId = useId()
+  const { ref, isInView } = useInView<HTMLElement>()
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -24,13 +26,17 @@ export function Newsletter() {
       return
     }
 
-    // No backend behind this portfolio demo — we just confirm the intent.
     setStatus('success')
     setEmail('')
   }
 
   return (
-    <section id="assinar" className={styles.newsletter} aria-labelledby="newsletter-heading">
+    <section
+      id="assinar"
+      ref={ref}
+      className={`${styles.newsletter} ${isInView ? styles.inView : ''}`}
+      aria-labelledby="newsletter-heading"
+    >
       <Container className={styles.card}>
         <div className={styles.decor} aria-hidden="true">
           <SendIcon />

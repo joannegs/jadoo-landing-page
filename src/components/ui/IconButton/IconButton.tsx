@@ -7,8 +7,6 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'ghost' | 'solid'
 }
 
-// Icon-only control. `label` is required and always becomes the accessible
-// name (visually hidden) — callers must not pass aria-hidden icons without it.
 export function IconButton({
   children,
   label,

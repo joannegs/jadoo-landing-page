@@ -5,6 +5,7 @@ import { SectionHeading } from '../../ui/SectionHeading/SectionHeading'
 import { IconButton } from '../../ui/IconButton/IconButton'
 import { ChevronLeftIcon, ChevronRightIcon } from '../../icons/Icons'
 import { testimonials } from '../../../data/testimonials'
+import { useInView } from '../../../hooks/useInView'
 import styles from './Testimonials.module.scss'
 
 export function Testimonials() {
@@ -12,6 +13,7 @@ export function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
   const active = testimonials[activeIndex]
   const activeName = t(`testimonials.items.${active.id}.name`)
+  const { ref, isInView } = useInView<HTMLElement>()
 
   const goTo = (index: number) => {
     const total = testimonials.length
@@ -19,7 +21,12 @@ export function Testimonials() {
   }
 
   return (
-    <section id="depoimentos" className={styles.testimonials} aria-labelledby="testimonials-heading">
+    <section
+      id="depoimentos"
+      ref={ref}
+      className={`${styles.testimonials} ${isInView ? styles.inView : ''}`}
+      aria-labelledby="testimonials-heading"
+    >
       <Container className={styles.layout}>
         <SectionHeading
           id="testimonials-heading"

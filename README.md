@@ -12,6 +12,7 @@ A landing page for a fictitious travel agency (**Jadoo**).
 | Styling               | [Sass](https://sass-lang.com/) (CSS Modules per component) |
 | Internationalization  | [i18next](https://www.i18next.com/) + [react-i18next](https://react.i18next.com/) + [i18next-browser-languagedetector](https://github.com/i18next/i18next-browser-languageDetector) |
 | Typography            | Self-hosted variable fonts via [Fontsource](https://fontsource.org/) (`Fraunces` for headings, `Inter` for body text) |
+| Animations             | [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) (scroll detection, via a custom `useInView` hook) + native CSS `@keyframes`/`animation` (no animation library) |
 | Lint                  | [oxlint](https://oxc.rs/) |
 
 No CSS framework (Tailwind, Bootstrap, etc.) is used — the whole design
@@ -33,6 +34,8 @@ src/
 │   └── icons/              # SVG icons as React components
 ├── data/                   # Typed content arrays/objects
 │                            # (destinations, services, testimonials, nav...)
+├── hooks/
+│   └── useInView.ts        # IntersectionObserver hook powering scroll reveals
 ├── i18n/
 │   ├── config.ts           # i18next configuration
 │   └── locales/            # Translation files (pt.json, en.json, es.json)
@@ -130,6 +133,50 @@ Destination photos, testimonial avatars, and the hero image were downloaded
 locally (not hotlinked) and optimized as `.webp` where possible, living in
 `src/assets/images/`.
 
+## 🎬 Animations
+
+No animation library (Framer Motion, GSAP, AOS, etc.) is used — scroll
+reveals and ambient motion are built with the Intersection Observer API and
+plain CSS.
+
+1. **Scroll detection**: [`src/hooks/useInView.ts`](src/hooks/useInView.ts)
+   wraps `IntersectionObserver` in a hook that returns a `ref` and an
+   `isInView` boolean, toggling both ways as an element enters/leaves the
+   viewport (not just once), so section animations replay every time you
+   scroll back to them.
+
+2. **Reveal-on-scroll**: each section attaches `useInView` to its root and
+   toggles an `.inView` modifier class. `src/styles/_mixins.scss` provides
+   `reveal-hidden($direction, $distance)` (the resting/hidden state) and
+   `reveal-visible($delay)` (the `@keyframes` entrance, triggered under
+   `.inView`), with `up`, `down`, `left`, `right` and `pop` (scale-in)
+   variants driven by a shared `--reveal-from` CSS custom property.
+
+3. **Staggering**: the `stagger($count, $selector, $step)` mixin assigns
+   incremental `animation-delay`s via `:nth-child`, so grids/lists (service
+   cards, destination cards, trip steps, partner logos) cascade in item by
+   item instead of appearing all at once.
+
+4. **Ambient motion**: a few elements animate continuously regardless of
+   scroll state — the hero illustration and its background blob gently
+   float (`float($distance, $duration)` mixin), the newsletter's send icon
+   drifts and tilts like a paper plane, and the partner logos scroll in an
+   infinite marquee (duplicated list translated via `@keyframes`, paused on
+   hover).
+
+5. **CSS Modules caveat**: `@keyframes` names are scoped per file by CSS
+   Modules, so a shared keyframe declared once in a global stylesheet gets
+   hashed differently in every component that references it and never
+   matches. `reveal-keyframes` / `float-keyframes` mixins are `@include`d
+   once per `.module.scss` file that needs them, keeping the definition and
+   its usage in the same file.
+
+6. **Reduced motion**: `_reset.scss` shortens `animation-duration` globally
+   for `prefers-reduced-motion: reduce`, which is enough for one-shot
+   reveals but would turn an `infinite` loop into a rapid flicker instead of
+   stopping it — the `reduce-motion()` mixin explicitly sets
+   `animation: none` on ambient/infinite animations for those users.
+
 ## 🚀 Running locally
 
 Prerequisite: [Node.js](https://nodejs.org/) installed.
@@ -159,7 +206,11 @@ By default, `npm run dev` serves the app at `http://localhost:5173`.
   `src/styles/_tokens.scss` and applied via the `respond()` mixin.
 - Skip link to the main content, `aria-label`s on buttons/icons, focus
   management in the mobile menu and the language switcher.
-- Respects `prefers-reduced-motion` for motion-sensitive users.
+- Respects `prefers-reduced-motion` for motion-sensitive users — one-shot
+  reveal animations snap to their end state and ambient/infinite loops (see
+  [Animations](#-animations)) are turned off outright.
+- The partner logos marquee duplicates its list to loop seamlessly; the
+  duplicate is `aria-hidden` so screen readers don't announce it twice.
 
 ## 📄 License
 

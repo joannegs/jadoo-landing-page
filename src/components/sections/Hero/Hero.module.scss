@@ -1,5 +1,8 @@
 @use '../../../styles/mixins' as m;
 
+@include m.reveal-keyframes;
+@include m.float-keyframes;
+
 .hero {
   padding-block: 48px 64px;
   overflow: hidden;
@@ -108,6 +111,7 @@
 
 .content {
   order: 2;
+  @include m.reveal-hidden(left);
 
   @include m.respond(lg) {
     order: initial;
@@ -119,9 +123,20 @@
   display: flex;
   justify-content: center;
   order: 1;
+  @include m.reveal-hidden(right);
 
   @include m.respond(lg) {
     order: initial;
+  }
+}
+
+.hero.inView {
+  .content {
+    @include m.reveal-visible;
+  }
+
+  .visual {
+    @include m.reveal-visible(150ms);
   }
 }
 
@@ -131,6 +146,7 @@
   background-color: var(--color-peach);
   border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%;
   z-index: 0;
+  @include m.float(8px, 7s);
 }
 
 .image {
@@ -139,4 +155,5 @@
   width: min(100%, 460px);
   height: auto;
   border-radius: var(--radius-lg);
+  @include m.float(14px, 5s);
 }

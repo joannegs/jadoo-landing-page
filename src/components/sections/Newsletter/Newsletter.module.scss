@@ -1,5 +1,7 @@
 @use '../../../styles/mixins' as m;
 
+@include m.reveal-keyframes;
+
 .newsletter {
   padding-block: 64px;
 
@@ -15,9 +17,25 @@
   border-radius: var(--radius-lg);
   padding: 48px 24px;
   overflow: hidden;
+  @include m.reveal-hidden(pop);
 
   @include m.respond(md) {
     padding: 64px 80px;
+  }
+}
+
+.newsletter.inView .card {
+  @include m.reveal-visible;
+}
+
+@keyframes fly {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  50% {
+    transform: translate(3px, -10px) rotate(8deg);
   }
 }
 
@@ -36,6 +54,11 @@
     border-radius: 999px;
     background-color: var(--color-navy-700);
     color: white;
+    animation: fly 4s ease-in-out infinite;
+
+    @include m.reduce-motion {
+      animation: none;
+    }
 
     svg {
       width: 22px;

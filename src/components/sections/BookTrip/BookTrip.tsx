@@ -5,6 +5,7 @@ import { IconButton } from '../../ui/IconButton/IconButton'
 import { AirportIcon, HeartIcon, LeafIcon, MapIcon, PaymentIcon, PinIcon, SendIcon } from '../../icons/Icons'
 import { tripSteps } from '../../../data/steps'
 import type { TripStep } from '../../../types'
+import { useInView } from '../../../hooks/useInView'
 import santoriniImage from '../../../assets/images/trip-santorini.webp'
 import styles from './BookTrip.module.scss'
 
@@ -16,9 +17,15 @@ const icons: Record<TripStep['icon'], typeof PinIcon> = {
 
 export function BookTrip() {
   const { t } = useTranslation()
+  const { ref, isInView } = useInView<HTMLElement>()
 
   return (
-    <section id="como-funciona" className={styles.bookTrip} aria-labelledby="book-trip-heading">
+    <section
+      id="como-funciona"
+      ref={ref}
+      className={`${styles.bookTrip} ${isInView ? styles.inView : ''}`}
+      aria-labelledby="book-trip-heading"
+    >
       <Container className={styles.grid}>
         <div className={styles.content}>
           <p className="eyebrow">{t('bookTrip.eyebrow')}</p>
@@ -79,22 +86,6 @@ export function BookTrip() {
               </div>
             </div>
           </article>
-
-         {/*  <div className={styles.progressCard}>
-            <p className={styles.progressBadge}>Em andamento</p>
-            <h4>Viagem a Roma</h4>
-            <div
-              className={styles.progressTrack}
-              role="progressbar"
-              aria-valuenow={40}
-              aria-valuemin={0}
-              aria-valuemax={100}
-              aria-label="Progresso da viagem a Roma"
-            >
-              <div className={styles.progressFill} style={{ width: '40%' }} />
-            </div>
-            <p className={styles.progressLabel}>40% concluído</p>
-          </div> */}
         </div>
       </Container>
     </section>

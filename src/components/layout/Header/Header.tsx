@@ -66,9 +66,6 @@ export function Header() {
         </div>
       </Container>
 
-      {/* Portalled to <body>: a fixed-position panel nested under an
-          ancestor with backdrop-filter (this header) would be contained by
-          that ancestor instead of the viewport, breaking full-screen cover. */}
       {createPortal(
         <div
           id="mobile-nav"

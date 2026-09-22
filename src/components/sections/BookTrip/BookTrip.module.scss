@@ -1,5 +1,8 @@
 @use '../../../styles/mixins' as m;
 
+@include m.reveal-keyframes;
+@include m.float-keyframes;
+
 .bookTrip {
   padding-block: 64px;
 
@@ -36,6 +39,27 @@
 .step {
   display: flex;
   gap: 20px;
+  @include m.reveal-hidden(left, 24px);
+}
+
+.content {
+  @include m.reveal-hidden(left);
+}
+
+.bookTrip.inView {
+  .content {
+    @include m.reveal-visible;
+  }
+
+  .visual {
+    @include m.reveal-visible(150ms);
+  }
+
+  .step {
+    @include m.reveal-visible;
+  }
+
+  @include m.stagger(3, '.step', 120ms, 120ms);
 }
 
 .stepTitle {
@@ -52,6 +76,7 @@
 .visual {
   position: relative;
   padding-block: 24px;
+  @include m.reveal-hidden(right);
 
   @include m.respond(lg) {
     padding-block: 0;
@@ -66,6 +91,7 @@
   overflow: hidden;
   max-width: 360px;
   margin-inline: auto;
+  @include m.float(10px, 6s);
 
   @include m.respond(lg) {
     margin-inline: 0;

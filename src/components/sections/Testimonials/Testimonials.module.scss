@@ -1,5 +1,7 @@
 @use '../../../styles/mixins' as m;
 
+@include m.reveal-keyframes;
+
 .testimonials {
   padding-block: 64px;
 
@@ -32,6 +34,7 @@
   border-radius: 20px;
   background-color: var(--color-surface);
   box-shadow: var(--shadow-md);
+  @include m.reveal-hidden(left);
 
   @include m.respond(sm) {
     flex-direction: row;
@@ -75,6 +78,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @include m.reveal-hidden(right, 20px);
+}
+
+.testimonials.inView {
+  .card {
+    @include m.reveal-visible;
+  }
+
+  .controls {
+    @include m.reveal-visible(150ms);
+  }
 }
 
 .dots {

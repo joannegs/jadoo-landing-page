@@ -35,8 +35,6 @@ h3 {
   }
 }
 
-// Utility to keep section headings/eyebrows/etc. consistent without
-// re-declaring the same rules in every module.
 .eyebrow {
   display: inline-block;
   font-family: var(--font-body);

@@ -27,9 +27,6 @@ i18n
     },
   })
 
-// Keep <html lang> and the tab title/description in sync with whatever
-// language i18next resolves to (persisted choice, browser default, or a
-// manual switch), so assistive tech and the browser tab stay accurate.
 function syncDocumentToLanguage(language: string) {
   document.documentElement.lang = language
   document.title = i18n.t('meta.title')

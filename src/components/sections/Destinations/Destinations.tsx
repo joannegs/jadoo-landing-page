@@ -3,13 +3,20 @@ import { Container } from '../../ui/Container/Container'
 import { SectionHeading } from '../../ui/SectionHeading/SectionHeading'
 import { PinIcon } from '../../icons/Icons'
 import { destinations } from '../../../data/destinations'
+import { useInView } from '../../../hooks/useInView'
 import styles from './Destinations.module.scss'
 
 export function Destinations() {
   const { t } = useTranslation()
+  const { ref, isInView } = useInView<HTMLElement>()
 
   return (
-    <section id="destinos" className={styles.destinations} aria-labelledby="destinations-heading">
+    <section
+      id="destinos"
+      ref={ref}
+      className={`${styles.destinations} ${isInView ? styles.inView : ''}`}
+      aria-labelledby="destinations-heading"
+    >
       <Container>
         <SectionHeading
           id="destinations-heading"

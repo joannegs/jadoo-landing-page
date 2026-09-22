@@ -1,5 +1,7 @@
 @use '../../../styles/mixins' as m;
 
+@include m.reveal-keyframes;
+
 .destinations {
   padding-block: 64px;
   background-color: var(--color-surface-muted);
@@ -32,6 +34,11 @@
   transition:
     box-shadow var(--duration-base) var(--ease-standard),
     transform var(--duration-base) var(--ease-standard);
+  @include m.reveal-hidden(left, 40px);
+
+  &:nth-child(even) {
+    --reveal-from: translateX(40px);
+  }
 
   &:hover {
     box-shadow: var(--shadow-md);
@@ -39,10 +46,16 @@
   }
 }
 
+.destinations.inView {
+  .card {
+    @include m.reveal-visible;
+  }
+
+  @include m.stagger(3, '.card', 120ms);
+}
+
 .image {
   width: 100%;
-  // The width/height HTML attributes (set for CLS prevention) become a
-  // definite CSS height that overrides aspect-ratio unless we reset it here.
   height: auto;
   aspect-ratio: 9 / 10;
   object-fit: cover;

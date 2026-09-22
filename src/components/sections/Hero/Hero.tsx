@@ -1,14 +1,21 @@
 import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { Button } from '../../ui/Button/Button'
+import { useInView } from '../../../hooks/useInView'
 import heroImage from '../../../assets/images/traveler-hero.png'
 import styles from './Hero.module.scss'
 
 export function Hero() {
   const { t } = useTranslation()
+  const { ref, isInView } = useInView<HTMLElement>()
 
   return (
-    <section id="top" className={styles.hero} aria-labelledby="hero-heading">
+    <section
+      id="top"
+      ref={ref}
+      className={`${styles.hero} ${isInView ? styles.inView : ''}`}
+      aria-labelledby="hero-heading"
+    >
       <Container className={styles.grid}>
         <div className={styles.content}>
           <p className={`eyebrow ${styles.eyebrow}`}>{t('hero.eyebrow')}</p>

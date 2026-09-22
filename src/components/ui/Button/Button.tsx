@@ -18,9 +18,6 @@ type ButtonAsLink = CommonProps &
 
 type ButtonProps = ButtonAsButton | ButtonAsLink
 
-// Renders an <a> when `href` is passed, otherwise a <button>, so CTAs that
-// navigate stay real links (right-click/open-in-new-tab keep working) while
-// action buttons stay real buttons for correct semantics/keyboard behavior.
 export function Button({
   variant = 'primary',
   icon,

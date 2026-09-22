@@ -1,9 +1,5 @@
 import type { SVGProps } from 'react'
 
-// Hand-authored, stroke-based icon set (24x24, currentColor) so the app
-// ships zero icon-library weight. Every icon is decorative by default;
-// screen-reader labeling is the caller's responsibility (aria-label on the
-// interactive element that wraps it, or a visible text label alongside it).
 type IconProps = SVGProps<SVGSVGElement>
 
 const base = {

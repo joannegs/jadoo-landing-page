@@ -1,5 +1,7 @@
 @use '../../../styles/mixins' as m;
 
+@include m.reveal-keyframes;
+
 .services {
   position: relative;
   overflow: hidden;
@@ -51,11 +53,20 @@
   transition:
     box-shadow var(--duration-base) var(--ease-standard),
     transform var(--duration-base) var(--ease-standard);
+  @include m.reveal-hidden(pop, 16px);
 
   &:hover {
     box-shadow: var(--shadow-md);
     transform: translateY(-4px);
   }
+}
+
+.services.inView {
+  .card {
+    @include m.reveal-visible;
+  }
+
+  @include m.stagger(4, '.card', 100ms);
 }
 
 .cardTitle {

@@ -1,14 +1,10 @@
-// Design tokens shared by every component. SCSS variables drive breakpoint
-// mixins (compile-time); CSS custom properties drive anything components
-// may need to read/override at runtime.
-
-// ---- Breakpoints (mobile-first) -------------------------------------------
+// Breakpoints
 $bp-sm: 480px;
 $bp-md: 768px;
 $bp-lg: 1024px;
 $bp-xl: 1280px;
 
-// ---- Layout ----------------------------------------------------------------
+
 $container-max: 1200px;
 $radius-sm: 8px;
 $radius-md: 14px;
@@ -16,7 +12,6 @@ $radius-lg: 24px;
 $radius-pill: 999px;
 
 :root {
-  // Brand palette
   --color-navy-900: #141a35;
   --color-navy-800: #1c2445;
   --color-navy-700: #2c3564;
@@ -42,17 +37,15 @@ $radius-pill: 999px;
 
   --color-focus-ring: #2c5cf6;
 
-  // Typography
   --font-display: 'Fraunces Variable', 'Georgia', serif;
   --font-body: 'Inter Variable', 'Segoe UI', system-ui, sans-serif;
 
-  // Elevation
   --shadow-sm: 0 2px 8px rgba(23, 30, 58, 0.06);
   --shadow-md: 0 12px 32px rgba(23, 30, 58, 0.1);
   --shadow-lg: 0 24px 60px rgba(23, 30, 58, 0.16);
 
-  // Motion
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-base: 250ms;
+  --duration-slow: 700ms;
 }

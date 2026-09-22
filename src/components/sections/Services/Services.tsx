@@ -5,6 +5,7 @@ import { IconBadge } from '../../ui/IconBadge/IconBadge'
 import { CustomizeIcon, EventIcon, FlightIcon, WeatherIcon } from '../../icons/Icons'
 import { services } from '../../../data/services'
 import type { ServiceItem } from '../../../types'
+import { useInView } from '../../../hooks/useInView'
 import decor from '../../../assets/images/decor.png'
 import styles from './Services.module.scss'
 
@@ -17,9 +18,15 @@ const icons: Record<ServiceItem['id'], typeof WeatherIcon> = {
 
 export function Services() {
   const { t } = useTranslation()
+  const { ref, isInView } = useInView<HTMLElement>()
 
   return (
-    <section id="servicos" className={styles.services} aria-labelledby="services-heading">
+    <section
+      id="servicos"
+      ref={ref}
+      className={`${styles.services} ${isInView ? styles.inView : ''}`}
+      aria-labelledby="services-heading"
+    >
       <img src={decor} alt="" className={styles.decor} aria-hidden="true" />
       <Container>
         <SectionHeading

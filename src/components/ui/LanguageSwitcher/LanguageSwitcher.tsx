@@ -4,9 +4,6 @@ import { ChevronDownIcon, GlobeIcon } from '../../icons/Icons'
 import { languages } from '../../../data/languages'
 import styles from './LanguageSwitcher.module.scss'
 
-// Drives the real i18next language: selecting an option here calls
-// i18n.changeLanguage, which re-renders every component using useTranslation
-// and (via src/i18n/config.ts) updates <html lang> and the document title.
 export function LanguageSwitcher() {
   const { t, i18n } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
