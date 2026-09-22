@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { Header } from './components/layout/Header/Header'
 import { Footer } from './components/layout/Footer/Footer'
 import { Hero } from './components/sections/Hero/Hero'
@@ -10,8 +9,6 @@ import { PartnerLogos } from './components/sections/PartnerLogos/PartnerLogos'
 import { Newsletter } from './components/sections/Newsletter/Newsletter'
 
 function App() {
-  const { t } = useTranslation()
-
   return (
     <>
       <Header />
