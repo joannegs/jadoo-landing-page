@@ -2,6 +2,8 @@
 
 A landing page for a fictitious travel agency (**Jadoo**).
 
+![Jadoo landing page preview](public/jadoo-landing.gif)
+
 ## 🛠️ Tech stack
 
 | Category            | Technology |
