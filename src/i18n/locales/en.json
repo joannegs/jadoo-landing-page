@@ -3,7 +3,6 @@
     "title": "Jadoo Travel — Travel, enjoy, and live a new, full life",
     "description": "Jadoo Travel — personalized itineraries, the best flights, and full support for your next trip."
   },
-  "skipLink": "Skip to content",
   "header": {
     "navLabel": "Main navigation",
     "mobileNavLabel": "Mobile navigation",
@@ -165,7 +164,9 @@
     },
     "app": {
       "title": "Get our app",
+      "googlePlayCaption": "GET IT ON",
       "googlePlay": "Google Play",
+      "appStoreCaption": "Download on the",
       "appStore": "App Store"
     },
     "social": {

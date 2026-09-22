@@ -61,7 +61,7 @@
 
 .tripCard {
   background-color: var(--color-surface);
-  border-radius: var(--radius-lg);
+  border-radius: 25px;
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   max-width: 360px;
@@ -74,8 +74,6 @@
 
 .tripImage {
   width: 100%;
-  // Reset the height the width/height HTML attributes imply, otherwise it
-  // overrides aspect-ratio and the image renders at its raw intrinsic size.
   height: auto;
   aspect-ratio: 1;
   object-fit: cover;
@@ -136,7 +134,7 @@
   margin-top: -40px;
   margin-inline: 24px;
   background-color: var(--color-surface);
-  border-radius: var(--radius-md);
+  border-radius: 25px;
   box-shadow: var(--shadow-lg);
   padding: 20px 24px;
   max-width: 300px;

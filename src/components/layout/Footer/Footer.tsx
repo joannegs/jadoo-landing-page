@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Container } from '../../ui/Container/Container'
 import { FacebookIcon, InstagramIcon, TwitterIcon } from '../../icons/Icons'
+import appleIcon from '../../../assets/images/apple.png'
+import googlePlayIcon from '../../../assets/images/google-play.png'
 import styles from './Footer.module.scss'
 
 const columnKeys = ['company', 'contact', 'more'] as const
@@ -58,8 +60,20 @@ export function Footer() {
           <div className={styles.app}>
             <h3>{t('footer.app.title')}</h3>
             <div className={styles.storeButtons}>
-              <span className={styles.storeButton}>{t('footer.app.googlePlay')}</span>
-              <span className={styles.storeButton}>{t('footer.app.appStore')}</span>
+              <a href="#" className={styles.storeButton}>
+                <img src={googlePlayIcon} alt="" className={styles.storeIcon} />
+                <span className={styles.storeLabel}>
+                  <span className={styles.storeCaption}>{t('footer.app.googlePlayCaption')}</span>
+                  <span className={styles.storeName}>{t('footer.app.googlePlay')}</span>
+                </span>
+              </a>
+              <a href="#" className={styles.storeButton}>
+                <img src={appleIcon} alt="" className={styles.storeIcon} />
+                <span className={styles.storeLabel}>
+                  <span className={styles.storeCaption}>{t('footer.app.appStoreCaption')}</span>
+                  <span className={styles.storeName}>{t('footer.app.appStore')}</span>
+                </span>
+              </a>
             </div>
           </div>
         </div>

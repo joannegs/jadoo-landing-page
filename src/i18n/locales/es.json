@@ -3,7 +3,6 @@
     "title": "Jadoo Viajes — Viaja, disfruta y vive una vida nueva y plena",
     "description": "Jadoo Viajes — itinerarios personalizados, los mejores vuelos y soporte completo para tu próximo viaje."
   },
-  "skipLink": "Saltar al contenido",
   "header": {
     "navLabel": "Navegación principal",
     "mobileNavLabel": "Navegación móvil",
@@ -165,7 +164,9 @@
     },
     "app": {
       "title": "Descarga nuestra app",
+      "googlePlayCaption": "Disponible en",
       "googlePlay": "Google Play",
+      "appStoreCaption": "Disponible en",
       "appStore": "App Store"
     },
     "social": {

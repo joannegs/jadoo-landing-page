@@ -106,10 +106,23 @@
   }
 }
 
+.content {
+  order: 2;
+
+  @include m.respond(lg) {
+    order: initial;
+  }
+}
+
 .visual {
   position: relative;
   display: flex;
   justify-content: center;
+  order: 1;
+
+  @include m.respond(lg) {
+    order: initial;
+  }
 }
 
 .blob {

@@ -1,6 +1,8 @@
 @use '../../../styles/mixins' as m;
 
 .services {
+  position: relative;
+  overflow: hidden;
   padding-block: 64px;
 
   @include m.respond(lg) {
@@ -8,7 +10,25 @@
   }
 }
 
+.decor {
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  z-index: -1000;
+  width: min(420px, 55%);
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+
+  @include m.respond(lg) {
+    right: 0;
+    width: min(420px, 45%);
+  }
+}
+
 .grid {
+  position: relative;
+  z-index: 1;
   margin-top: 48px;
   display: grid;
   gap: 24px;
@@ -25,7 +45,7 @@
 
 .card {
   padding: 28px 24px;
-  border-radius: var(--radius-md);
+  border-radius: 25px;
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
   transition:

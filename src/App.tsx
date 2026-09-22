@@ -14,9 +14,6 @@ function App() {
 
   return (
     <>
-      <a href="#main" className="skip-link">
-        {t('skipLink')}
-      </a>
       <Header />
       <main id="main">
         <Hero />
